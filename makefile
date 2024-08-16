@@ -1,6 +1,6 @@
 # Used by `image`, `push` & `deploy` targets, override as required
-IMAGE_REG ?= azurecr.io
-IMAGE_REPO ?= webappcontainer/python-demoapp
+
+IMAGE_REPO ?= webappcontainer.azurecr.io/python-demoapp
 IMAGE_TAG ?= latest
 
 # Used by `deploy` target, sets Azure webap defaults, override as required
@@ -31,10 +31,10 @@ lint-fix: venv  ## 📜 Lint & format, will try to fix errors and modify code
 
 image:  ## 🔨 Build container image from Dockerfile 
 	docker build . --file build/Dockerfile \
-	--tag $(IMAGE_REG)/$(IMAGE_REPO):$(IMAGE_TAG)
+	--$(IMAGE_REPO):$(IMAGE_TAG)
 
 push:  ## 📤 Push container image to registry 
-	docker push $(IMAGE_REG)/$(IMAGE_REPO):$(IMAGE_TAG)
+	docker push $(IMAGE_REPO):$(IMAGE_TAG)
 
 run: venv  ## 🏃 Run the server locally using Python & Flask
 	. $(SRC_DIR)/.venv/bin/activate \
