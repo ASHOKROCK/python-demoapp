@@ -31,7 +31,7 @@ lint-fix: venv  ## 📜 Lint & format, will try to fix errors and modify code
 
 image:  ## 🔨 Build container image from Dockerfile 
 	docker build . --file build/Dockerfile \
-	--$(IMAGE_REPO):$(IMAGE_TAG)
+	 $(IMAGE_REPO):$(IMAGE_TAG)
 
 push:  ## 📤 Push container image to registry 
 	docker push $(IMAGE_REPO):$(IMAGE_TAG)
